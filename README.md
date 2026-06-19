@@ -165,27 +165,3 @@ React renders 4 result cards
 
 ---
 
-## Deploying to Vercel
-
-1. Push your code to GitHub.
-2. Import the project at [vercel.com/new](https://vercel.com/new).
-3. In **Environment Variables**, add:
-   - `GEMINI_API_KEY` → your Gemini API key
-4. Deploy. Vercel auto-detects Next.js.
-
-> The `GEMINI_API_KEY` variable is server-only — Vercel keeps it secure.
-
----
-
-## Demo Tips (Hackathon / Classroom)
-
-- Use high-quality, clear photos for best results.
-- Great test images: dark rooftop, gas-powered car, single-pane windows, lawn without trees, a factory, a solar panel installation.
-- The AI explicitly avoids hallucinating — if the image is unclear, confidence will be `low`.
-- The impact score (0–100) gives audiences an instant visual to discuss.
-
----
-
-## License
-
-MIT — built for educational and hackathon use.
