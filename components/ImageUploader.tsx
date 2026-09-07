@@ -189,9 +189,26 @@ export default function ImageUploader({
               style={{ maxHeight: "420px" }}
             />
 
+            {/* Top-right floating remove button */}
+            {!disabled && (
+              <button
+                id="clear-image-btn"
+                onClick={handleClear}
+                className="absolute top-4 right-4 flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg transition-all hover:bg-white/30 backdrop-blur-md shadow-sm"
+                style={{
+                  background: "rgba(255, 255, 255, 0.15)",
+                  border: "1px solid rgba(255, 255, 255, 0.4)",
+                  color: "#ffffff",
+                }}
+              >
+                <X size={14} />
+                Remove
+              </button>
+            )}
+
             {/* Overlay bar */}
             <div
-              className="absolute bottom-0 left-0 right-0 px-4 py-3 flex items-center justify-between"
+              className="absolute bottom-0 left-0 right-0 px-4 py-3 flex items-center pointer-events-none"
               style={{
                 background: "linear-gradient(0deg, rgba(4,13,10,0.9) 0%, transparent 100%)",
               }}
@@ -205,21 +222,6 @@ export default function ImageUploader({
                   {fileName}
                 </span>
               </div>
-              {!disabled && (
-                <button
-                  id="clear-image-btn"
-                  onClick={handleClear}
-                  className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-all hover:opacity-90"
-                  style={{
-                    background: "rgba(239, 68, 68, 0.15)",
-                    border: "1px solid rgba(239, 68, 68, 0.3)",
-                    color: "#f87171",
-                  }}
-                >
-                  <X size={13} />
-                  Remove
-                </button>
-              )}
             </div>
           </motion.div>
         )}

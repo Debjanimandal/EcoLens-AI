@@ -30,12 +30,12 @@
   --text-muted: #6b7280;
 
   /* Status colours */
-  --low-bg: #052e16;
-  --low-text: #86efac;
-  --medium-bg: #422006;
-  --medium-text: #fbbf24;
-  --high-bg: #450a0a;
-  --high-text: #f87171;
+  --low-bg: rgba(255, 255, 255, 0.15);
+  --low-text: #ffffff;
+  --medium-bg: rgba(255, 255, 255, 0.15);
+  --medium-text: #ffffff;
+  --high-bg: rgba(255, 255, 255, 0.15);
+  --high-text: #ffffff;
 
   /* Borders */
   --border-subtle: rgba(52, 211, 153, 0.12);
@@ -104,6 +104,39 @@ body::after {
 
 .glass-card:hover {
   border-color: rgba(52, 211, 153, 0.35);
+}
+
+/* ─── Liquid glass ───────────────────────────────────────────────────────── */
+.liquid-glass {
+  background: rgba(0, 0, 0, 0.4);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.3) 0%,
+    rgba(255,255,255,0.1) 20%,
+    rgba(255,255,255,0)   40%,
+    rgba(255,255,255,0)   60%,
+    rgba(255,255,255,0.1) 80%,
+    rgba(255,255,255,0.3) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 /* ─── Gradient text ──────────────────────────────────────────────────────── */
@@ -183,9 +216,9 @@ body::after {
   letter-spacing: 0.05em;
 }
 
-.badge-low    { background: var(--low-bg);    color: var(--low-text); }
-.badge-medium { background: var(--medium-bg); color: var(--medium-text); }
-.badge-high   { background: var(--high-bg);   color: var(--high-text); }
+.badge-low    { background: var(--low-bg); color: var(--low-text); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(8px); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.badge-medium { background: var(--medium-bg); color: var(--medium-text); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(8px); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.badge-high   { background: var(--high-bg); color: var(--high-text); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(8px); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
 
 /* ─── Impact score ring ──────────────────────────────────────────────────── */
 .score-ring {
@@ -272,3 +305,16 @@ body::after {
   font-weight: 700;
   margin-top: 0.05rem;
 }
+
+/* ─── Fade-rise animation (EcoLens preview) ──────────────────────────────── */
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-rise         { animation: fade-rise .8s ease-out both; }
+.animate-fade-rise-delay   { animation: fade-rise .8s ease-out .25s both; }
+.animate-fade-rise-delay-2 { animation: fade-rise .8s ease-out .5s both; }
+
+/* ─── Scrollbar hide ─────────────────────────────────────────────────────── */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { scrollbar-width: none; }

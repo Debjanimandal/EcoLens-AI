@@ -1,22 +1,22 @@
 # EcoLens AI 🌿
 
 > **Turning Photos into Climate Action**  
-> An AI-powered environmental audit tool built with Next.js + Google Gemini Vision.
+> An AI-powered environmental audit tool built with Next.js 16 + OpenRouter Vision AI.
 
 ---
 
 ## What It Does
 
-Upload any photo of your environment — a rooftop, a street, your car, appliances, a backyard, or a building — and EcoLens AI instantly delivers:
+Upload any photo of your environment — a rooftop, a street, your vehicle, home appliances, a backyard, or an industrial building — and EcoLens AI delivers an immediate, data-driven environmental analysis:
 
 | Section | What you get |
 |---------|-------------|
-| 🔬 **Visual Audit** | Identified subject, observed climate issue, and why it matters |
-| ⚡ **Mitigation** | Practical steps to reduce emissions, tailored to your image |
-| 🛡️ **Adaptation** | Strategies to build climate resilience against specific risks |
-| 💰 **ROI Analysis** | Cost level, payback estimate, and 0-100 impact score |
+| 🔬 **Visual Audit** | Identified subject, observed environmental issues, and climate significance |
+| ⚡ **Mitigation** | Tailored, high-impact recommendations to reduce emissions and waste |
+| 🛡️ **Adaptation** | Climate resilience and risk adaptation strategies |
+| 💰 **ROI Analysis** | Implementation cost level, payback timeline, and a 0–100 climate impact score |
 
-**No forms. No manual data entry. Just a photo.**
+**No tedious surveys. No manual data entry. Just upload an image.**
 
 ---
 
@@ -24,32 +24,33 @@ Upload any photo of your environment — a rooftop, a street, your car, applianc
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS + Custom CSS |
-| AI | Google Gemini 2.0 Flash (Vision) |
-| Animations | Framer Motion |
-| Upload | react-dropzone |
-| Validation | Zod |
-| Icons | lucide-react |
+| **Framework** | Next.js 16 (App Router with Turbopack) |
+| **Language** | TypeScript |
+| **UI Library** | React 19 |
+| **Styling** | Tailwind CSS v4 + Custom Glassmorphism CSS Tokens |
+| **AI Vision Engine** | OpenRouter API (`google/gemma-4-31b-it:free` / Vision Models) |
+| **Animations** | Framer Motion |
+| **File Handling** | react-dropzone |
+| **Schema Validation** | Zod |
+| **Icons** | Lucide React |
 
 ---
 
 ## Prerequisites
 
-- Node.js 18+ (LTS recommended)
-- npm 9+
-- A [Google Gemini API key](https://aistudio.google.com/app/apikey) (free tier available)
+- **Node.js**: 18.x or 20+ (LTS recommended)
+- **npm**: 9+
+- **OpenRouter API Key**: Obtain a free API key at [openrouter.ai/keys](https://openrouter.ai/keys)
 
 ---
 
 ## Quick Start
 
-### 1. Clone / download the project
+### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
-cd ecolens-ai
+git clone https://github.com/Debjanimandal/EcoLens-AI.git
+cd EcoLens-AI
 ```
 
 ### 2. Install dependencies
@@ -58,27 +59,29 @@ cd ecolens-ai
 npm install
 ```
 
-### 3. Set up environment variables
+### 3. Configure environment variables
+
+Copy the sample environment file:
 
 ```bash
 cp .env.local.example .env.local
 ```
 
-Open `.env.local` and add your Gemini API key:
+Open `.env.local` and paste your OpenRouter API key:
 
 ```env
-GEMINI_API_KEY=your_actual_gemini_api_key_here
+OPENROUTER_API_KEY=your_openrouter_api_key_here
 ```
 
-> 🔒 The API key lives **only on the server**. It is never sent to the browser.
+> 🔒 **Security Notice:** The API key is utilized exclusively on the server side (`lib/openrouter.ts` and `app/api/audit/route.ts`) and is never leaked to the client browser.
 
-### 4. Run the development server
+### 4. Start the development server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Visit [http://localhost:3000](http://localhost:3000) to view the application.
 
 ---
 
@@ -87,32 +90,34 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ```
 ecolens-ai/
 ├── app/
-│   ├── layout.tsx          # Root layout (fonts, metadata)
-│   ├── page.tsx            # Main page — all app states
-│   ├── globals.css         # Design system, tokens, animations
+│   ├── layout.tsx              # Root HTML layout, metadata & fonts
+│   ├── page.tsx                # Cinematic landing page with HeroSection
+│   ├── globals.css             # Design tokens, liquid glass, and animations
+│   ├── audit/
+│   │   └── page.tsx            # Interactive climate audit workspace
 │   └── api/
 │       └── audit/
-│           └── route.ts    # POST /api/audit — backend route
+│           └── route.ts        # POST /api/audit (vision analysis endpoint)
 ├── components/
-│   ├── HeroSection.tsx     # Landing hero with CTA
-│   ├── ImageUploader.tsx   # Drag-and-drop + click upload
-│   ├── AnalyzeButton.tsx   # Submit button with loading state
-│   ├── ResultsDashboard.tsx # Orchestrates result cards
-│   ├── AuditCard.tsx       # Visual audit card
-│   ├── MitigationCard.tsx  # Mitigation strategies card
-│   ├── AdaptationCard.tsx  # Adaptation strategies card
-│   ├── RoiCard.tsx         # ROI + animated impact score ring
-│   ├── SummaryBanner.tsx   # AI one-line summary
-│   ├── StatusBadge.tsx     # Reusable low/medium/high badge
-│   ├── LoadingOverlay.tsx  # Animated loading screen
-│   └── ErrorBanner.tsx     # Error display with retry
+│   ├── HeroSection.tsx         # Full-screen video hero & glassmorphic nav
+│   ├── ImageUploader.tsx       # Drag-and-drop file upload with preview
+│   ├── AnalyzeButton.tsx       # Audit trigger with animated state
+│   ├── ResultsDashboard.tsx     # Comprehensive climate report dashboard
+│   ├── AuditCard.tsx           # Identified subject & environmental issue card
+│   ├── MitigationCard.tsx      # Mitigation recommendations card
+│   ├── AdaptationCard.tsx      # Climate resilience card
+│   ├── RoiCard.tsx             # ROI analysis and circular impact score ring
+│   ├── SummaryBanner.tsx       # High-level AI summary banner
+│   ├── StatusBadge.tsx         # Reusable risk/priority badge
+│   ├── LoadingOverlay.tsx      # Multi-step progress animation
+│   └── ErrorBanner.tsx         # User-friendly error alert with retry
 ├── lib/
-│   ├── gemini.ts           # Gemini client + system prompt
-│   └── schema.ts           # Zod schema + TypeScript types
+│   ├── openrouter.ts           # OpenRouter client & structured audit prompt
+│   └── schema.ts               # Zod validation schemas and TypeScript types
 ├── types/
-│   └── audit.ts            # Re-exported types
-├── .env.local.example      # Environment variable template
-└── README.md
+│   └── audit.ts                # Audit data type definitions
+├── .env.local.example          # Environment variables template
+└── README.md                   # Documentation
 ```
 
 ---
@@ -120,48 +125,80 @@ ecolens-ai/
 ## How It Works
 
 ```
-User uploads image
+1. User uploads image on /audit
        ↓
-Browser sends FormData → POST /api/audit
+2. Browser submits FormData to POST /api/audit
        ↓
-Server validates file (type + size)
+3. Server validates image MIME type and file size (< 10MB)
        ↓
-Convert buffer → base64
+4. Image is encoded to base64 and sent to OpenRouter Vision API
        ↓
-Send to Gemini Vision with strict system prompt
+5. AI processes image with structured environmental audit prompt
        ↓
-Parse + Zod-validate JSON response
+6. Output is parsed and validated against Zod schema
        ↓
-Return structured data to browser
-       ↓
-React renders 4 result cards
+7. Structured audit data returned to client and rendered in interactive cards
 ```
 
 ---
 
-## API Route
+## API Reference
 
-`POST /api/audit`
+### `POST /api/audit`
 
-**Request:** `multipart/form-data` with field `image` (JPEG/PNG/WebP/GIF, max 10 MB)
+Uploads an image for AI environmental analysis.
 
-**Success response:**
+- **Content-Type:** `multipart/form-data`
+- **Body:** `image` (JPEG, PNG, WebP, GIF; max 10MB)
+
+#### Success Response (`200 OK`)
+
 ```json
 {
   "data": {
-    "audit": { "identified_subject": "...", "observed_issue": "...", "why_it_matters": "...", "confidence": "high" },
-    "mitigation": { "recommendations": ["..."], "expected_benefit": "...", "effort_level": "medium" },
-    "adaptation": { "recommendations": ["..."], "risk_addressed": "...", "resilience_benefit": "..." },
-    "roi": { "cost_level": "low", "payback_or_value": "...", "impact_score": 78 },
-    "summary": "..."
+    "audit": {
+      "identified_subject": "Commercial flat roof with black bitumen membrane",
+      "observed_issue": "High solar heat absorption contributing to urban heat island effect",
+      "why_it_matters": "Increases building cooling loads and ambient neighborhood temperatures",
+      "confidence": "high"
+    },
+    "mitigation": {
+      "recommendations": [
+        "Apply high-albedo reflective cool roof coating",
+        "Install modular solar PV arrays on unshaded areas"
+      ],
+      "expected_benefit": "Up to 25% reduction in cooling energy demand",
+      "effort_level": "medium"
+    },
+    "adaptation": {
+      "recommendations": [
+        "Incorporate extensive sedum green roofing in load-bearing zones"
+      ],
+      "risk_addressed": "Severe heatwaves and stormwater runoff surge",
+      "resilience_benefit": "Lowers peak roof surface temperatures by 30°F"
+    },
+    "roi": {
+      "cost_level": "medium",
+      "payback_or_value": "3 to 5 years via electricity savings",
+      "impact_score": 85
+    },
+    "summary": "High-impact opportunity to cool building envelope and generate on-site solar power."
   }
 }
 ```
 
-**Error response:**
-```json
-{ "error": "Human-friendly error message" }
-```
+---
+
+## Deploying to Vercel
+
+1. Push your repository to GitHub.
+2. Import the project on [vercel.com/new](https://vercel.com/new).
+3. Under **Environment Variables**, add:
+   - `OPENROUTER_API_KEY` = your OpenRouter API key
+4. Click **Deploy**. Next.js App Router will be configured automatically.
 
 ---
 
+## License
+
+MIT License — free for educational, personal, and hackathon use.

@@ -25,11 +25,11 @@ export default function ResultsDashboard({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="w-full flex flex-col gap-6"
+      className="w-full flex flex-col items-center gap-8"
       id="results-dashboard"
     >
       {/* Top: image + summary */}
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="flex flex-col lg:flex-row gap-6 w-full max-w-5xl">
         {/* Image thumbnail */}
         <div
           className="lg:w-72 flex-shrink-0 rounded-2xl overflow-hidden self-start"
@@ -68,35 +68,11 @@ export default function ResultsDashboard({
         {/* Summary */}
         <div className="flex-1 flex flex-col justify-center">
           <SummaryBanner summary={result.summary} />
-          <div className="mt-4 flex flex-wrap gap-3">
-            <div
-              className="px-4 py-2 rounded-xl text-sm"
-              style={{
-                background: "rgba(16, 185, 129, 0.08)",
-                border: "1px solid rgba(52, 211, 153, 0.15)",
-                color: "var(--green-300)",
-              }}
-            >
-              🔬 Subject:{" "}
-              <strong>{result.audit.identified_subject}</strong>
-            </div>
-            <div
-              className="px-4 py-2 rounded-xl text-sm"
-              style={{
-                background: "rgba(16, 185, 129, 0.08)",
-                border: "1px solid rgba(52, 211, 153, 0.15)",
-                color: "var(--green-300)",
-              }}
-            >
-              📊 Impact Score:{" "}
-              <strong>{result.roi.impact_score}/100</strong>
-            </div>
-          </div>
         </div>
       </div>
 
       {/* 4-card grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 w-full max-w-5xl">
         <AuditCard audit={result.audit} />
         <MitigationCard mitigation={result.mitigation} />
         <AdaptationCard adaptation={result.adaptation} />
