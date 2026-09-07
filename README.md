@@ -202,5 +202,3 @@ Uploads an image for AI environmental analysis.
 ## License
 
 MIT License — free for educational, personal, and hackathon use.
-
-<!-- push test: 2026-09-07 15:33:10 -->
